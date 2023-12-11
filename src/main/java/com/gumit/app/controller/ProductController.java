@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gumit.app.dto.CategoryDto;
 import com.gumit.app.dto.CustomResponse;
 import com.gumit.app.dto.GetAllProduct;
+import com.gumit.app.dto.ProductCategoryDto;
 import com.gumit.app.dto.ProductDto;
 import com.gumit.app.dto.ProductInsertDto;
 import com.gumit.app.dto.ProductUpdateDto;
@@ -61,7 +62,7 @@ public class ProductController {
 		
 		
 		
-		CategoryDto categoryDto =  categoryService.getCategoryById(productDto.getCategoryId());
+		ProductCategoryDto categoryDto =  categoryService.getCategoryById(productDto.getCategoryId());
 		
 		productService.addProduct(ProductDto.builder().category(categoryDto).description(productDto.getDescription()).price(productDto.getPrice()).recommended(productDto.isRecommended()).build());
 		
@@ -72,7 +73,7 @@ public class ProductController {
 	@PutMapping("/update" )
 	public ResponseEntity<CustomResponse> putProduct( @RequestBody ProductUpdateDto productDto){
 		
-		CategoryDto categoryDto =  categoryService.getCategoryById(productDto.getCategoryId());
+		ProductCategoryDto categoryDto =  categoryService.getCategoryById(productDto.getCategoryId());
 		
 		productService.putProduct(ProductDto.builder().category(categoryDto).description(productDto.getDescription()).id(productDto.getId()).price(productDto.getPrice()).recommended(productDto.isRecommended()).build());
 		

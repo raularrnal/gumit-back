@@ -16,25 +16,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "category")
+@Table(name = "restaurant")
 @Data
 @NoArgsConstructor
-public class Category {
+public class Restaurant {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	
+	@Column(name = "name")
+	private String name;
 	
+	@Column(name = "phone")
+	private String phone;
 	
-	@Column(name = "description")
-	private String description;
+	@Column(name = "address")
+	private String address;
 	
+	@Column(name = "city")
+	private String city;
 	
-	@ManyToOne
-	@JoinColumn(name = "restaurant_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Restaurant restaurant;
 
 }
+	
+
+

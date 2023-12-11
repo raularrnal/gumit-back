@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gumit.app.dto.CategoryDto;
@@ -30,10 +31,11 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 
-	@GetMapping("/categories" )
-	public ResponseEntity<GetAllCategories> getAllSimples(){
+	@GetMapping("/categories/{id}" )
+	public ResponseEntity<GetAllCategories> getAllCategoriesByrestaurant(@PathVariable Long id){
 		
-		GetAllCategories getAllCategories = GetAllCategories.builder().categoryList(categoryService.getAllCategories()).build();
+		
+		GetAllCategories getAllCategories = GetAllCategories.builder().categoryList(categoryService.getCategoriesByRestaurant(id)).build();
 		
 		return  ResponseEntity.ok(getAllCategories );
 		

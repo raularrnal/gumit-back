@@ -5,12 +5,11 @@ import lombok.Data;
 
 @Builder
 @Data
-public class CategoryDto {
+public class ProductCategoryDto {
 
 	private Long id;
 	
 	private String description;
 	
-	private RestaurantDto restauranDto;
 	
 }

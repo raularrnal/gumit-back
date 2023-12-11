@@ -5,12 +5,14 @@ import lombok.Data;
 
 @Builder
 @Data
-public class CategoryDto {
-
+public class AllergenDto {
+	
 	private Long id;
 	
-	private String description;
+	private String name;
+
+	private String imgPath;
 	
-	private RestaurantDto restauranDto;
+	
 	
 }

@@ -1,13 +1,18 @@
 package com.gumit.app.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gumit.app.dto.AllergenDto;
 import com.gumit.app.dto.CategoryDto;
+import com.gumit.app.dto.ProductCategoryDto;
 import com.gumit.app.dto.ProductDto;
+import com.gumit.app.entity.Allergen;
+import com.gumit.app.entity.AllergenProduct;
 import com.gumit.app.entity.Category;
 import com.gumit.app.entity.Product;
 import com.gumit.app.repository.ProductRepository;
@@ -21,22 +26,51 @@ public class ProductService {
 	
 	
 	public List<ProductDto> getAllProduct() {
-		
+
 		List<Product> productList = productRepository.findAll();
-		
-		List<ProductDto> productDtoList= productList.stream().map( item -> ProductDto.builder().id(item.getId()).description(item.getDescription()).price(item.getPrice()).category( CategoryDto.builder().description(item.getCategory().getDescription()).id(item.getCategory().getId()).build() ).recommended(item.isRecommended()).build() ).collect(Collectors.toList());
-		
-		
+
+		List<ProductDto> productDtoList = productList.stream().map(item -> productMapProductToDto(item))
+				.collect(Collectors.toList());
+
 		return productDtoList;
 	}
 	
-	
+	private ProductDto productMapProductToDto(Product item) {
+		
+		List<AllergenProduct> allergenProductList = item.getAllergenProduct();
+		
+		List<AllergenDto> allergenDtoList = new ArrayList<>();
+		
+		if(allergenProductList != null) {
+			for (AllergenProduct allergenProduct : allergenProductList) {
+				
+				List<Allergen> allergenList = allergenProduct.getAllergen();
+				
+					if (allergenList != null) {
+						for (Allergen allergen : allergenList) {
+							AllergenDto allergenDto = AllergenDto.builder().id(allergen.getId()).imgPath(allergen.getFileName()).name(allergen.getName()).build();
+						
+							allergenDtoList.add(allergenDto);
+						}
+					}
+			}
+			
+		}
+		
+		
+		return ProductDto.builder().name(item.getName()).id(item.getId())
+		.description(item.getDescription()).price(item.getPrice())
+		.category(ProductCategoryDto.builder().description(item.getCategory().getDescription())
+				.id(item.getCategory().getId()).build())
+		.recommended(item.isRecommended()).allergentList(allergenDtoList).build();
+		
+	}
 	
 	public List<ProductDto> getAllProductsByCategory(Long categoryId){
 		
 		List<Product> productList = productRepository.findAll();
 		
-		List<ProductDto> productDtoList= productList.stream().filter(item -> item.getCategory().getId() == categoryId).map( item -> ProductDto.builder().id(item.getId()).description(item.getDescription()).price(item.getPrice()).category( CategoryDto.builder().description(item.getCategory().getDescription()).id(item.getCategory().getId()).build() ).recommended(item.isRecommended()).build() ).collect(Collectors.toList());
+		List<ProductDto> productDtoList= productList.stream().filter(item -> item.getCategory().getId() == categoryId).map( item -> productMapProductToDto(item) ).collect(Collectors.toList());
 		
 		return productDtoList;
 		
@@ -58,7 +92,7 @@ public class ProductService {
 		
 		Category category = new Category();
 		
-		CategoryDto categoryDto = productDto.getCategory();
+		ProductCategoryDto categoryDto = productDto.getCategory();
 		
 		category.setDescription(categoryDto.getDescription());
 		
@@ -90,7 +124,7 @@ public class ProductService {
 		
 		Category category = new Category();
 		
-		CategoryDto categoryDto = productDto.getCategory();
+		ProductCategoryDto categoryDto = productDto.getCategory();
 		
 		category.setDescription(categoryDto.getDescription());
 		
