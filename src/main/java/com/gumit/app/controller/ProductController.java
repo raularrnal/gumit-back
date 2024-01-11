@@ -37,24 +37,24 @@ public class ProductController {
 	private CategoryService categoryService;
 	
 
-	@GetMapping("/products" )
-	public ResponseEntity<GetAllProduct> getAllSimples(){
-		
-		GetAllProduct getAllProduct = GetAllProduct.builder().productList(productService.getAllProduct()).build();
-		
-		return  ResponseEntity.ok(getAllProduct);
-		
-	}
+//	@GetMapping("/products" )
+//	public ResponseEntity<GetAllProduct> getAllSimples(){
+//		
+//		GetAllProduct getAllProduct = GetAllProduct.builder().productList(productService.getAllProduct()).build();
+//		
+//		return  ResponseEntity.ok(getAllProduct);
+//		
+//	}
 	
 	
-	@GetMapping("/products/{categoryId}" )
-	public ResponseEntity<GetAllProduct> getAllSimples(@PathVariable Long categoryId){
-		
-		GetAllProduct getAllProduct = GetAllProduct.builder().productList(productService.getAllProductsByCategory(categoryId)).build();
-		
-		return  ResponseEntity.ok(getAllProduct);
-		
-	}
+//	@GetMapping("/products/{categoryId}" )
+//	public ResponseEntity<GetAllProduct> getAllSimples(@PathVariable Long categoryId){
+//		
+//		GetAllProduct getAllProduct = GetAllProduct.builder().productList(productService.getAllProductsByCategory(categoryId)).build();
+//		
+//		return  ResponseEntity.ok(getAllProduct);
+//		
+//	}
 	
 	
 	@PostMapping("/add" )
@@ -64,7 +64,7 @@ public class ProductController {
 		
 		ProductCategoryDto categoryDto =  categoryService.getCategoryById(productDto.getCategoryId());
 		
-		productService.addProduct(ProductDto.builder().category(categoryDto).description(productDto.getDescription()).price(productDto.getPrice()).recommended(productDto.isRecommended()).build());
+//		productService.addProduct(ProductDto.builder().category(categoryDto).description(productDto.getDescription()).price(productDto.getPrice()).recommended(productDto.isRecommended()).build());
 		
 		return ResponseEntity.ok( CustomResponse.builder().message("INSERTADO CORRECTAMENTE").obj(productDto).build() );
 	}
@@ -75,7 +75,7 @@ public class ProductController {
 		
 		ProductCategoryDto categoryDto =  categoryService.getCategoryById(productDto.getCategoryId());
 		
-		productService.putProduct(ProductDto.builder().category(categoryDto).description(productDto.getDescription()).id(productDto.getId()).price(productDto.getPrice()).recommended(productDto.isRecommended()).build());
+//		productService.putProduct(ProductDto.builder().category(categoryDto).description(productDto.getDescription()).id(productDto.getId()).price(productDto.getPrice()).recommended(productDto.isRecommended()).build());
 		
 		return ResponseEntity.ok( CustomResponse.builder().message("MODIFICADO CORRECTAMENTE").obj(productDto).build() );
 	}

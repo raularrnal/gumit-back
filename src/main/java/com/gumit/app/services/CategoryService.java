@@ -23,13 +23,13 @@ public class CategoryService {
 
 		List<Category> categoryList = categoryRepository.findAll();
 
-		List<CategoryDto> categoryDtoList = categoryList.stream().map(item -> CategoryDto.builder().id(item.getId())
-				.restauranDto(RestaurantDto.builder().id(item.getRestaurant().getId()).name(item.getRestaurant().getName())
-						.address(item.getRestaurant().getAddress()).city(item.getRestaurant().getCity()).phone(item.getRestaurant().getPhone()).build())
-				.description(item.getDescription()).build())
-				.collect(Collectors.toList());
+//		List<CategoryDto> categoryDtoList = categoryList.stream().map(item -> CategoryDto.builder().id(item.getId())
+//				.restauranDto(RestaurantDto.builder().id(item.getRestaurant().getId()).name(item.getRestaurant().getName())
+//						.address(item.getRestaurant().getAddress()).city(item.getRestaurant().getCity()).phone(item.getRestaurant().getPhone()).build())
+//				.description(item.getDescription()).build())
+//				.collect(Collectors.toList());
 
-		return categoryDtoList;
+		return null;
 	}
 
 	public void addCategory(CategoryDto categoryDto) {
@@ -78,12 +78,12 @@ public class CategoryService {
 		List<Category> categoryList = categoryRepository.getCategoryByRestaurantId(id);
 
 		if (categoryList != null) {
-			return  categoryList.stream()
-					.map(item -> CategoryDto.builder().id(item.getId())
-							.restauranDto(RestaurantDto.builder().id(item.getRestaurant().getId()).name(item.getRestaurant().getName())
-									.address(item.getRestaurant().getAddress()).city(item.getRestaurant().getCity()).phone(item.getRestaurant().getPhone()).build())
-							.description(item.getDescription()).build())
-					.collect(Collectors.toList());
+//			return  categoryList.stream()
+//					.map(item -> CategoryDto.builder().id(item.getId())
+//							.restauranDto(RestaurantDto.builder().id(item.getRestaurant().getId()).name(item.getRestaurant().getName())
+//									.address(item.getRestaurant().getAddress()).city(item.getRestaurant().getCity()).phone(item.getRestaurant().getPhone()).build())
+//							.description(item.getDescription()).build())
+//					.collect(Collectors.toList());
 			
 			
 

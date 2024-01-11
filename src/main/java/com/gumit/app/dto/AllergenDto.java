@@ -1,17 +1,17 @@
 package com.gumit.app.dto;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
 @Data
+@NoArgsConstructor
 public class AllergenDto {
 	
 	private Long id;
 	
 	private String name;
 
-	private String imgPath;
+	private String fileName;
 	
 	
 	

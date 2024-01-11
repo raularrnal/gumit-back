@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,31 +22,28 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "product")
+@Table(name = "restaurant_additional_info")
 @NoArgsConstructor
-public class Product {
+public class RestaurantAdditionalInfo {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
     private Long id;
-	@Column(name = "name")
-    private String name;
-	@Column(name = "price")
-	private Double price;
-	@Column(name = "description")
-	private String description;
-	@Column(name = "recommended")
-	private boolean recommended;
+	@Column(name = "is_take_away")
+    private boolean isTakeAway;
+	@Column(name = "is_delivery")
+	private boolean isdelivery;
+	@Column(name = "is_whatsapp_order")
+	private boolean isWhatsappOrder;
+	@Column(name = "instagram_account")
+	private String instragramAccount;
+	@Column(name = "facebook_account")
+	private String facebookAccount;
+	@Column(name = "whatsapp_number")
+	private Long whatsappNumber;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_category")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@OneToMany(fetch = FetchType.EAGER)
-	private Category category;
+
 	
-	
-	
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<AllergenProduct>  allergentProductList;
+
 }

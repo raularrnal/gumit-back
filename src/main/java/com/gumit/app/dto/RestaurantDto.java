@@ -1,5 +1,7 @@
 package com.gumit.app.dto;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,18 @@ public class RestaurantDto {
 	
 	private String city;
 	
+    private boolean isTakeAway;
+	private boolean isdelivery;
+	private boolean isWhatsappOrder;
+	private String instragramAccount;
+	private String facebookAccount;
+	private Long whatsappNumber;
+	
+	private List<MenuDto> menuList;
+	
+	private List<CategoryDto> categoryList;
+	
+	private List<Schedule> scheduleList;
 
 }
 	

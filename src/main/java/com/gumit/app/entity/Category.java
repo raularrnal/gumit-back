@@ -1,8 +1,11 @@
 package com.gumit.app.entity;
 
+import java.util.List;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,5 +39,9 @@ public class Category {
 	@JoinColumn(name = "restaurant_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Restaurant restaurant;
+	
+	
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	private List<Product> productList;
 
 }

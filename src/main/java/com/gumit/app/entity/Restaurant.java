@@ -1,16 +1,20 @@
 package com.gumit.app.entity;
 
+import java.util.List;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +41,22 @@ public class Restaurant {
 	
 	@Column(name = "city")
 	private String city;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id")
+	private RestaurantAdditionalInfo restaurantAdditionalInfo;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "restaurant_id")
+	private List<Menu> menuList;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "restaurant_id")
+	private List<Category> category;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "restaurant_id")
+	private List<Schedule> scheduleList;
 	
 
 }

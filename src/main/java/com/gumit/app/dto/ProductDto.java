@@ -6,9 +6,10 @@ import com.gumit.app.entity.Category;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class ProductDto {
 	
 	private Long id;
@@ -16,8 +17,8 @@ public class ProductDto {
 	private Double price;
 	private String description;
 	private boolean recommended;
-	private ProductCategoryDto category;
 	
-	private List<AllergenDto> allergentList;
+	private List<AllergenProductDto> allergentProductList;
+	
 	
 }

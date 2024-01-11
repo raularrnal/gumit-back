@@ -50,6 +50,21 @@
     <artifactId>jackson-core</artifactId>
     <version>2.15.3</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+<dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>33.0.0-jre</version>
+</dependency>
+
+
+
+<dependency>
+    <groupId>org.modelmapper</groupId>
+    <artifactId>modelmapper</artifactId>
+    <version>2.4.2</version> <!-- Verifica la última versión en el repositorio Maven -->
+</dependency>
+
 
 	</dependencies>
 

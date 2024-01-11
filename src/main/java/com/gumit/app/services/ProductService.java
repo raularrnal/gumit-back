@@ -25,56 +25,56 @@ public class ProductService {
 	private ProductRepository productRepository;
 	
 	
-	public List<ProductDto> getAllProduct() {
-
-		List<Product> productList = productRepository.findAll();
-
-		List<ProductDto> productDtoList = productList.stream().map(item -> productMapProductToDto(item))
-				.collect(Collectors.toList());
-
-		return productDtoList;
-	}
+//	public List<ProductDto> getAllProduct() {
+//
+//		List<Product> productList = productRepository.findAll();
+//
+//		List<ProductDto> productDtoList = productList.stream().map(item -> productMapProductToDto(item))
+//				.collect(Collectors.toList());
+//
+//		return productDtoList;
+//	}
 	
-	private ProductDto productMapProductToDto(Product item) {
-		
-		List<AllergenProduct> allergenProductList = item.getAllergenProduct();
-		
-		List<AllergenDto> allergenDtoList = new ArrayList<>();
-		
-		if(allergenProductList != null) {
-			for (AllergenProduct allergenProduct : allergenProductList) {
-				
-				List<Allergen> allergenList = allergenProduct.getAllergen();
-				
-					if (allergenList != null) {
-						for (Allergen allergen : allergenList) {
-							AllergenDto allergenDto = AllergenDto.builder().id(allergen.getId()).imgPath(allergen.getFileName()).name(allergen.getName()).build();
-						
-							allergenDtoList.add(allergenDto);
-						}
-					}
-			}
-			
-		}
-		
-		
-		return ProductDto.builder().name(item.getName()).id(item.getId())
-		.description(item.getDescription()).price(item.getPrice())
-		.category(ProductCategoryDto.builder().description(item.getCategory().getDescription())
-				.id(item.getCategory().getId()).build())
-		.recommended(item.isRecommended()).allergentList(allergenDtoList).build();
-		
-	}
+//	private ProductDto productMapProductToDto(Product item) {
+//		
+//		List<AllergenProduct> allergenProductList = item.getAllergenProduct();
+//		
+//		List<AllergenDto> allergenDtoList = new ArrayList<>();
+//		
+//		if(allergenProductList != null) {
+//			for (AllergenProduct allergenProduct : allergenProductList) {
+//				
+//				List<Allergen> allergenList = allergenProduct.getAllergen();
+//				
+//					if (allergenList != null) {
+//						for (Allergen allergen : allergenList) {
+//							AllergenDto allergenDto = AllergenDto.builder().id(allergen.getId()).imgPath(allergen.getFileName()).name(allergen.getName()).build();
+//						
+//							allergenDtoList.add(allergenDto);
+//						}
+//					}
+//			}
+//			
+//		}
+//		
+//		
+//		return ProductDto.builder().name(item.getName()).id(item.getId())
+//		.description(item.getDescription()).price(item.getPrice())
+//		.category(ProductCategoryDto.builder().description(item.getCategory().getDescription())
+//				.id(item.getCategory().getId()).build())
+//		.recommended(item.isRecommended()).allergentList(allergenDtoList).build();
+//		
+//	}
 	
-	public List<ProductDto> getAllProductsByCategory(Long categoryId){
-		
-		List<Product> productList = productRepository.findAll();
-		
-		List<ProductDto> productDtoList= productList.stream().filter(item -> item.getCategory().getId() == categoryId).map( item -> productMapProductToDto(item) ).collect(Collectors.toList());
-		
-		return productDtoList;
-		
-	}
+//	public List<ProductDto> getAllProductsByCategory(Long categoryId){
+//		
+//		List<Product> productList = productRepository.findAll();
+//		
+//		List<ProductDto> productDtoList= productList.stream().filter(item -> item.getCategory().getId() == categoryId).map( item -> productMapProductToDto(item) ).collect(Collectors.toList());
+//		
+//		return productDtoList;
+//		
+//	}
 	
 	
 	
@@ -92,13 +92,13 @@ public class ProductService {
 		
 		Category category = new Category();
 		
-		ProductCategoryDto categoryDto = productDto.getCategory();
+//		ProductCategoryDto categoryDto = productDto.getCategory();
 		
-		category.setDescription(categoryDto.getDescription());
+//		category.setDescription(categoryDto.getDescription());
+//		
+//		category.setId(categoryDto.getId());
 		
-		category.setId(categoryDto.getId());
-		
-		product.setCategory(category);
+//		product.setCategory(category);
 		
 		productRepository.save(product);
 		
@@ -124,11 +124,11 @@ public class ProductService {
 		
 		Category category = new Category();
 		
-		ProductCategoryDto categoryDto = productDto.getCategory();
-		
-		category.setDescription(categoryDto.getDescription());
-		
-		category.setId(categoryDto.getId());
+//		ProductCategoryDto categoryDto = productDto.getCategory();
+//		
+//		category.setDescription(categoryDto.getDescription());
+//		
+//		category.setId(categoryDto.getId());
 		
 		product.setCategory(category);
 		

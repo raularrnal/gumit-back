@@ -1,16 +1,20 @@
 package com.gumit.app.dto;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
 @Data
+@NoArgsConstructor
 public class CategoryDto {
 
 	private Long id;
 	
 	private String description;
 	
-	private RestaurantDto restauranDto;
+	
+	private List<ProductDto> productList;
 	
 }
