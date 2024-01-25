@@ -42,30 +42,6 @@ public class CategoryController {
 	}
 	
 	
-	@PostMapping("/add")
-	public ResponseEntity<CustomResponse> addCategory(@RequestBody CategoryDto categoryDto){
-		
-		categoryService.addCategory(categoryDto);
-		
-		return ResponseEntity.ok(CustomResponse.builder().message("CATEGORIA INSERTADA CORRECTAMENTE").obj(categoryDto).build());
-	}
-	
-	
-	@PutMapping("/update")
-	public ResponseEntity<CustomResponse> putCategory(  @RequestBody CategoryDto categoryDto){
-		
-		categoryService.putCategory(categoryDto);
-		
-		return ResponseEntity.ok(CustomResponse.builder().message("CATEGORIA MODIFICADA CORRECTAMENTE").obj(categoryDto).build());
-	}
-	
-	@DeleteMapping("/remove/{id}")
-	public ResponseEntity<CustomResponse> removeCategory(@PathVariable Long id){
-		
-		categoryService.deleteCategory(id);
-		
-		return ResponseEntity.ok(CustomResponse.builder().message("CATEGORIA BORRADA CORRECTAMENTE").obj(id).build());
-	}
 	
 	
 	

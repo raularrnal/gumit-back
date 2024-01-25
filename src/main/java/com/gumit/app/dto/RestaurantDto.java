@@ -18,6 +18,8 @@ public class RestaurantDto {
 	
 	private Long id;
 	
+	private String logo;
+	
 	private String name;
 	
 	private String phone;
@@ -34,7 +36,6 @@ public class RestaurantDto {
 	private String facebookAccount;
 	private Long whatsappNumber;
 	
-	private List<MenuDto> menuList;
 	
 	private List<CategoryDto> categoryList;
 	

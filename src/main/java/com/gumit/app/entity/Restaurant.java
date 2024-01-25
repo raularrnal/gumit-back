@@ -33,6 +33,10 @@ public class Restaurant {
 	@Column(name = "name")
 	private String name;
 	
+
+	@Column(name = "logo")
+	private String logo;
+	
 	@Column(name = "phone")
 	private String phone;
 	
@@ -46,9 +50,6 @@ public class Restaurant {
 	@JoinColumn(name = "id")
 	private RestaurantAdditionalInfo restaurantAdditionalInfo;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "restaurant_id")
-	private List<Menu> menuList;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "restaurant_id")

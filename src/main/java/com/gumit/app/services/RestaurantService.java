@@ -10,14 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gumit.app.dto.CategoryDto;
-import com.gumit.app.dto.CategoryMenuDto;
-import com.gumit.app.dto.MenuDto;
 import com.gumit.app.dto.ProductDto;
 import com.gumit.app.dto.RestaurantDto;
 import com.gumit.app.dto.Schedule;
 import com.gumit.app.entity.Category;
-import com.gumit.app.entity.CategoryMenu;
-import com.gumit.app.entity.Menu;
 import com.gumit.app.entity.Product;
 import com.gumit.app.entity.Restaurant;
 import com.gumit.app.entity.RestaurantAdditionalInfo;
@@ -68,22 +64,8 @@ public class RestaurantService {
 		
 		RestaurantAdditionalInfo restaurantAdditionalInfo = item.getRestaurantAdditionalInfo();
 		
-		List<Menu> menuList =  item.getMenuList();
 		
 		
-		List<MenuDto> menuListDto  = new ArrayList<>();
-		
-		if(menuList != null) {
-			
-			for (Menu menu : menuList) {
-				
-			 MenuDto menuDto =	modelMapper.map(menu, MenuDto.class);
-			 menuListDto.add(menuDto);
-
-			}
-			
-			
-		}
 		List<Category> categoryList = item.getCategory();
 		List<CategoryDto> categoryListDto = new ArrayList<>();
 		
@@ -112,18 +94,18 @@ public class RestaurantService {
 
 		
 		if(restaurantAdditionalInfo != null) {
-			return  RestaurantDto.builder().id(item.getId()).name(item.getName()).address(item.getAddress())
+			return  RestaurantDto.builder().id(item.getId()).logo(item.getLogo()).name(item.getName()).address(item.getAddress())
 					.city(item.getCity()).phone(item.getPhone()).facebookAccount(restaurantAdditionalInfo.getFacebookAccount())
 					.instragramAccount(restaurantAdditionalInfo.getInstragramAccount())
 					.isdelivery(restaurantAdditionalInfo.isIsdelivery())
 					.isWhatsappOrder(restaurantAdditionalInfo.isWhatsappOrder())
 					.whatsappNumber(restaurantAdditionalInfo.getWhatsappNumber())
-					.isTakeAway(restaurantAdditionalInfo.isTakeAway()).menuList(menuListDto).categoryList(categoryListDto)
+					.isTakeAway(restaurantAdditionalInfo.isTakeAway()).categoryList(categoryListDto)
 					.scheduleList(scheduleDtoList)
 					.build();
 		}
-		return RestaurantDto.builder().id(item.getId()).name(item.getName()).address(item.getAddress())
-				.city(item.getCity()).phone(item.getPhone()).menuList(menuListDto).categoryList(categoryListDto)
+		return RestaurantDto.builder().logo(item.getLogo()).id(item.getId()).name(item.getName()).address(item.getAddress())
+				.city(item.getCity()).phone(item.getPhone()).categoryList(categoryListDto)
 				.scheduleList(scheduleDtoList)
 				.build();
 

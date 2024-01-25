@@ -17,6 +17,7 @@ public class ProductDto {
 	private Double price;
 	private String description;
 	private boolean recommended;
+	private String image;
 	
 	private List<AllergenProductDto> allergentProductList;
 	

@@ -39,6 +39,8 @@ public class Product {
 	private String description;
 	@Column(name = "recommended")
 	private boolean recommended;
+	@Column(name = "image")
+	private String image;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_category")
