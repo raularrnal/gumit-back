@@ -16,7 +16,6 @@ import com.gumit.app.dto.Schedule;
 import com.gumit.app.entity.Category;
 import com.gumit.app.entity.Product;
 import com.gumit.app.entity.Restaurant;
-import com.gumit.app.entity.RestaurantAdditionalInfo;
 import com.gumit.app.repository.CategoryRepository;
 import com.gumit.app.repository.ProductRepository;
 import com.gumit.app.repository.RestaurantRepository;
@@ -62,8 +61,6 @@ public class RestaurantService {
 	
 	private RestaurantDto mapRestaurantDto(Restaurant item) {
 		
-		RestaurantAdditionalInfo restaurantAdditionalInfo = item.getRestaurantAdditionalInfo();
-		
 		
 		
 		List<Category> categoryList = item.getCategory();
@@ -93,21 +90,15 @@ public class RestaurantService {
 		}
 
 		
-		if(restaurantAdditionalInfo != null) {
 			return  RestaurantDto.builder().id(item.getId()).logo(item.getLogo()).name(item.getName()).address(item.getAddress())
-					.city(item.getCity()).phone(item.getPhone()).facebookAccount(restaurantAdditionalInfo.getFacebookAccount())
-					.instragramAccount(restaurantAdditionalInfo.getInstragramAccount())
-					.isdelivery(restaurantAdditionalInfo.isIsdelivery())
-					.isWhatsappOrder(restaurantAdditionalInfo.isWhatsappOrder())
-					.whatsappNumber(restaurantAdditionalInfo.getWhatsappNumber())
-					.isTakeAway(restaurantAdditionalInfo.isTakeAway()).categoryList(categoryListDto)
+					.city(item.getCity()).phone(item.getPhone()).facebookAccount(item.getFacebookAccount())
+					.instragramAccount(item.getInstragramAccount())
+					.isdelivery(item.isIsdelivery())
+					.isWhatsappOrder(item.isWhatsappOrder())
+					.whatsappNumber(item.getWhatsappNumber())
+					.isTakeAway(item.isTakeAway()).categoryList(categoryListDto)
 					.scheduleList(scheduleDtoList)
 					.build();
-		}
-		return RestaurantDto.builder().logo(item.getLogo()).id(item.getId()).name(item.getName()).address(item.getAddress())
-				.city(item.getCity()).phone(item.getPhone()).categoryList(categoryListDto)
-				.scheduleList(scheduleDtoList)
-				.build();
 
 	}
 	

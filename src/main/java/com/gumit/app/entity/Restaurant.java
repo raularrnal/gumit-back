@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +31,7 @@ public class Restaurant {
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "name")
+	@Column(name = "name" , columnDefinition = "VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
 	private String name;
 	
 
@@ -46,9 +47,20 @@ public class Restaurant {
 	@Column(name = "city")
 	private String city;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id")
-	private RestaurantAdditionalInfo restaurantAdditionalInfo;
+	@Column(name = "is_take_away")
+    private boolean isTakeAway;
+	@Column(name = "is_delivery")
+	private boolean isdelivery;
+	@Column(name = "is_whatsapp_order")
+	private boolean isWhatsappOrder;
+	@Column(name = "instagram_account")
+	private String instragramAccount;
+	@Column(name = "facebook_account")
+	private String facebookAccount;
+	@Column(name = "whatsapp_number")
+	private Long whatsappNumber;
+	
+	
 	
 	
 	@OneToMany(fetch = FetchType.EAGER)
